@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Premier plan de l'icône de l'application (icône "adaptative", Android 8+).
+     Seule la zone centrale de 66 x 66 est toujours visible : les cercles y tiennent. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:pathData="M31,54 A16,16 0 1 0 63,54 A16,16 0 1 0 31,54 Z"
+        android:strokeWidth="4.5"
+        android:strokeColor="@color/white" />
+    <path
+        android:pathData="M45,54 A16,16 0 1 0 77,54 A16,16 0 1 0 45,54 Z"
+        android:strokeWidth="4.5"
+        android:strokeColor="@color/lime_accent" />
+</vector>

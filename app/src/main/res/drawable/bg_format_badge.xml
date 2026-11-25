@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fond du badge de format ("5 VS 5") : rectangle ink aux coins légèrement arrondis. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/ink" />
+    <corners android:radius="@dimen/badge_corner" />
+</shape>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ...et 2 sur tablette (écran d'au moins 600dp de large) -->
+    <integer name="match_columns">2</integer>
+</resources>

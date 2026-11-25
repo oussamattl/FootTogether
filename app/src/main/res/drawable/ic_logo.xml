@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Logo FootTogether (dessin vectoriel = net à toutes les tailles, très léger) :
+     un carré arrondi couleur ink et deux cercles qui se chevauchent, blanc et lime
+     (deux joueurs qui se retrouvent). Repris de la maquette : 112 x 112, coins de 32. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="112dp"
+    android:height="112dp"
+    android:viewportWidth="112"
+    android:viewportHeight="112">
+    <!-- Carré arrondi -->
+    <path
+        android:fillColor="@color/ink"
+        android:pathData="M32,0 H80 A32,32 0 0 1 112,32 V80 A32,32 0 0 1 80,112 H32 A32,32 0 0 1 0,80 V32 A32,32 0 0 1 32,0 Z" />
+    <!-- Cercle blanc (centre 48,56 ; rayon 18) -->
+    <path
+        android:pathData="M30,56 A18,18 0 1 0 66,56 A18,18 0 1 0 30,56 Z"
+        android:strokeWidth="5"
+        android:strokeColor="@color/white" />
+    <!-- Cercle lime (centre 64,56 ; rayon 18), dessiné par-dessus -->
+    <path
+        android:pathData="M46,56 A18,18 0 1 0 82,56 A18,18 0 1 0 46,56 Z"
+        android:strokeWidth="5"
+        android:strokeColor="@color/lime_accent" />
+</vector>

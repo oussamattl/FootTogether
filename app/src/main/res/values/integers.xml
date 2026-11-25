@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Nombre de colonnes de la liste des matchs : 1 sur téléphone... -->
+    <integer name="match_columns">1</integer>
+</resources>

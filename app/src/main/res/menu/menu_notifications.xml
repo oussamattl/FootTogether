@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Menu de l'écran Notifications : une seule action, affichée en texte dans la barre. -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_mark_all_read"
+        android:title="@string/notifications_mark_all_read"
+        app:showAsAction="ifRoom|withText" />
+</menu>

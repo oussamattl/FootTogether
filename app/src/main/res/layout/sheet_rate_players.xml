@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Feuille « Évaluer les joueurs » : un joueur à la fois, trois critères notés de 1 à 5 étoiles. -->
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/form_side_padding"
+        android:paddingTop="@dimen/space_s"
+        android:paddingBottom="@dimen/space_xl">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rate_title"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.FootTogether.Title"
+            android:textColor="@color/text_primary" />
+
+        <TextView
+            android:id="@+id/rate_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.FootTogether.Caption"
+            tools:text="Joueur 1 sur 3" />
+
+        <TextView
+            android:id="@+id/rate_player"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_l"
+            android:fontFamily="@font/barlow_condensed"
+            android:textColor="@color/green_primary"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            tools:text="Mehdi" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_m"
+            android:text="@string/rate_fair_play"
+            android:textAppearance="@style/TextAppearance.FootTogether.Label" />
+
+        <!-- RatingBar : 5 étoiles, une étoile entière à la fois (stepSize = 1) -->
+        <RatingBar
+            android:id="@+id/rate_fair_play"
+            style="?android:attr/ratingBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:progressTint="@color/green_primary"
+            android:secondaryProgressTint="@color/green_primary"
+            android:progressBackgroundTint="@color/outline"
+            android:stepSize="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_s"
+            android:text="@string/rate_punctuality"
+            android:textAppearance="@style/TextAppearance.FootTogether.Label" />
+
+        <RatingBar
+            android:id="@+id/rate_punctuality"
+            style="?android:attr/ratingBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:progressTint="@color/green_primary"
+            android:secondaryProgressTint="@color/green_primary"
+            android:progressBackgroundTint="@color/outline"
+            android:stepSize="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_s"
+            android:text="@string/rate_team_spirit"
+            android:textAppearance="@style/TextAppearance.FootTogether.Label" />
+
+        <RatingBar
+            android:id="@+id/rate_team_spirit"
+            style="?android:attr/ratingBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:progressTint="@color/green_primary"
+            android:secondaryProgressTint="@color/green_primary"
+            android:progressBackgroundTint="@color/outline"
+            android:stepSize="1" />
+
+        <TextView
+            android:id="@+id/rate_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_s"
+            android:text="@string/rate_missing"
+            android:textColor="@color/error_text"
+            android:textSize="@dimen/text_caption"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_l"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/rate_skip"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/space_s"
+                android:layout_weight="1"
+                android:minHeight="54dp"
+                android:text="@string/rate_skip"
+                android:textColor="@color/text_primary" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/rate_send"
+                style="@style/Widget.FootTogether.Button.Primary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/rate_send" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

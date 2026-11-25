@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- English translation. Same names as values/strings.xml (French, default). -->
+<resources>
+    <string name="tagline">Find your match.\nJoin the team.</string>
+    <string name="logo_description">FootTogether logo</string>
+
+    <string name="nav_home">Home</string>
+    <string name="nav_search">Search</string>
+    <string name="nav_create_description">Create a match</string>
+    <string name="nav_my_matches">My matches</string>
+    <string name="nav_profile">Profile</string>
+
+    <string name="menu_profile">Profile</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_favorites">Favorites</string>
+    <string name="menu_logout">Log out</string>
+    <string name="menu_notifications">Notifications</string>
+
+    <string name="auth_login_title">Welcome back</string>
+    <string name="auth_login_subtitle">Log in to join or organize a match.</string>
+    <string name="auth_register_title">Join the team</string>
+    <string name="auth_register_subtitle">Create your account in less than a minute.</string>
+    <string name="tab_login">Log in</string>
+    <string name="tab_register">Sign up</string>
+    <string name="field_email">Email address</string>
+    <string name="field_password">Password</string>
+    <string name="field_password_confirm">Confirm password</string>
+    <string name="field_pseudo">Nickname</string>
+    <string name="field_name">Name</string>
+    <string name="action_login">Log in</string>
+    <string name="action_register">Create my account</string>
+    <string name="auth_no_account">No account yet?</string>
+    <string name="auth_create_account">Create an account</string>
+    <string name="auth_have_account">Already have an account?</string>
+    <string name="auth_go_login">Log in</string>
+    <string name="welcome_user">Welcome %1$s!</string>
+    <string name="logout_confirm_title">Log out?</string>
+    <string name="logout_confirm_message">You will need to log in again to see your matches.</string>
+
+    <string name="error_required">Required field</string>
+    <string name="error_email_invalid">Invalid email address</string>
+    <string name="error_password_short">At least 6 characters</string>
+    <string name="error_password_mismatch">Passwords do not match</string>
+    <string name="error_pseudo_length">Between 3 and 20 characters</string>
+    <string name="error_wrong_credentials">Wrong email or password.</string>
+    <string name="error_email_taken">An account already exists with this email.</string>
+    <string name="error_weak_password">Password too weak (at least 6 characters).</string>
+    <string name="error_too_many_requests">Too many attempts. Try again in a few minutes.</string>
+    <string name="error_profile_save">Could not save your profile. Please try again.</string>
+    <string name="error_profile_load">Could not load your profile.</string>
+
+    <string name="home_greeting">Hello,</string>
+    <string name="home_section_upcoming">Upcoming matches</string>
+    <string name="home_empty_title">No upcoming match</string>
+    <string name="home_empty_message">Be the first to organize a match near you!</string>
+    <string name="home_empty_action">Create a match</string>
+    <string name="error_matches_load">Could not load matches.</string>
+
+    <plurals name="match_places_left">
+        <item quantity="one">%d spot left</item>
+        <item quantity="other">%d spots left</item>
+    </plurals>
+    <string name="match_count_by">%1$d/%2$d · by %3$s</string>
+    <string name="match_place_format">%1$s, %2$s</string>
+
+    <string name="field_title">Title</string>
+    <string name="field_date">Date</string>
+    <string name="field_time">Time</string>
+    <string name="field_address">Pitch location</string>
+    <string name="field_city">City</string>
+    <string name="field_format">Format</string>
+    <string name="field_max_players">Maximum players</string>
+    <string name="field_level">Level wanted</string>
+    <string name="field_description">Additional info (optional)</string>
+    <string name="hint_description">E.g. bring bibs, artificial turf…</string>
+    <string name="pick_date_title">Match date</string>
+    <string name="pick_time_title">Match time</string>
+    <string name="decrease_players">One player less</string>
+    <string name="increase_players">One player more</string>
+    <string name="action_publish">Publish the match</string>
+    <string name="match_published">Match published!</string>
+    <string name="error_title_length">Between 3 and 60 characters</string>
+    <string name="error_date_past">Pick a date and time in the future</string>
+    <string name="error_create_match">Could not publish the match. Please try again.</string>
+
+    <string name="format_five">5 VS 5</string>
+    <string name="format_seven">7 VS 7</string>
+    <string name="format_eleven">11 VS 11</string>
+
+    <string name="level_beginner">Beginner</string>
+    <string name="level_intermediate">Intermediate</string>
+    <string name="level_advanced">Advanced</string>
+
+    <string name="position_goalkeeper">Goalkeeper</string>
+    <string name="position_defender">Defender</string>
+    <string name="position_midfielder">Midfielder</string>
+    <string name="position_forward">Forward</string>
+
+    <string name="status_full">Full</string>
+    <string name="status_cancelled">Cancelled</string>
+    <string name="status_finished">Finished</string>
+
+    <string name="offline_banner">Server temporarily unreachable</string>
+    <string name="error_generic">Something went wrong. Please try again.</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- Match detail (lot 3) -->
+    <string name="action_back">Back</string>
+    <string name="action_favorite">Add to favorites</string>
+    <string name="detail_participants">Players</string>
+    <string name="detail_count">%1$d / %2$d</string>
+    <plurals name="places_left_label">
+        <item quantity="one">spot left</item>
+        <item quantity="other">spots left</item>
+    </plurals>
+    <string name="participant_organizer">Organizer</string>
+    <string name="participant_you">%1$s (you)</string>
+    <string name="participant_info">%1$s · %2$s</string>
+    <string name="status_open">Open</string>
+    <string name="status_in_progress">In progress</string>
+    <string name="action_join">Join the match</string>
+    <string name="action_leave">Leave the match</string>
+    <string name="action_leave_short">Leave</string>
+    <string name="action_in_progress">Please wait…</string>
+    <string name="detail_cancelled">Match cancelled</string>
+    <string name="detail_finished">Match finished</string>
+    <string name="detail_started">Match in progress</string>
+    <string name="join_success">You\'re in!</string>
+    <string name="leave_success">You left the match.</string>
+    <string name="leave_confirm_title">Leave this match?</string>
+    <string name="leave_confirm_message">Your spot will be freed for another player.</string>
+    <string name="error_match_load">Could not load the match.</string>
+    <string name="error_match_not_found">This match no longer exists.</string>
+    <string name="error_join_full">Sorry, the match just filled up.</string>
+    <string name="error_already_joined">You are already in this match.</string>
+    <string name="error_match_closed">This match is no longer open.</string>
+    <string name="error_match_started">The match has already started.</string>
+    <string name="error_not_participant">You are not in this match.</string>
+    <string name="error_organizer_leave">The organizer cannot leave their own match.</string>
+    <string name="error_join">Could not join the match. Please try again.</string>
+    <string name="error_leave">Could not leave the match. Please try again.</string>
+
+    <!-- Profile (lot 4) -->
+    <string name="profile_photo_description">Profile photo</string>
+    <string name="profile_change_photo">Change photo</string>
+    <string name="profile_played">Matches played</string>
+    <string name="profile_organized">Organized</string>
+    <string name="profile_edit">Edit profile</string>
+    <string name="profile_no_city">No city set</string>
+    <string name="profile_saved">Profile saved</string>
+    <string name="field_position">Position</string>
+    <string name="field_my_level">My level</string>
+    <string name="action_save">Save</string>
+    <string name="photo_take">Take a photo</string>
+    <string name="photo_gallery">Choose from gallery</string>
+    <string name="photo_remove">Remove photo</string>
+    <string name="photo_no_camera">No camera app on this phone.</string>
+    <string name="photo_saving">Uploading photo…</string>
+    <string name="photo_saved">Photo saved</string>
+    <string name="photo_removed">Photo removed</string>
+    <string name="photo_error">Could not save the photo.</string>
+
+    <!-- My matches (lot 4) -->
+    <string name="my_matches_participating">Playing</string>
+    <string name="my_matches_organizing">Organizing</string>
+    <string name="my_matches_swipe_hint">Swipe a match sideways to leave it.</string>
+    <string name="my_matches_empty_participating_title">No match joined</string>
+    <string name="my_matches_empty_participating_message">Join a match from Home or Search.</string>
+    <string name="my_matches_empty_organizing_title">No match organized</string>
+    <string name="my_matches_empty_organizing_message">Tap the + button to organize your first match.</string>
+    <string name="leave_confirm_named">You are about to leave “%1$s”. Your spot will be freed for another player.</string>
+
+    <!-- Edit / cancel a match (lot 4) -->
+    <string name="edit_match_title">Edit match</string>
+    <string name="action_save_match">Save changes</string>
+    <string name="action_edit_match">Edit</string>
+    <string name="action_cancel_match">Cancel match</string>
+    <string name="keep_match">Keep match</string>
+    <string name="cancel_match_confirm_title">Cancel this match?</string>
+    <string name="cancel_match_confirm_message">Players will see the match as cancelled. This cannot be undone.</string>
+    <string name="match_updated">Match updated</string>
+    <string name="match_cancelled">Match cancelled</string>
+    <string name="error_update_match">Could not save the changes. Please try again.</string>
+    <string name="error_cancel_match">Could not cancel the match. Please try again.</string>
+    <string name="error_not_organizer">Only the organizer can edit this match.</string>
+    <string name="error_max_below_count">The maximum cannot be lower than the number of players.</string>
+    <string name="error_max_below_count_n">%1$d players already joined: cannot go lower.</string>
+
+    <!-- Location, search, map, weather (lot 5) -->
+    <string name="use_my_location">Use my location</string>
+    <string name="location_searching">Finding location…</string>
+    <string name="location_saved">Location saved</string>
+    <string name="location_unavailable">Location not found. Check that location is turned on.</string>
+    <string name="location_denied_create">Location denied: type the pitch address.</string>
+    <string name="location_denied_search">Location denied: search by city.</string>
+    <string name="location_allow">Allow</string>
+    <string name="search_city_hint">City</string>
+    <string name="search_mode_list">Show as list</string>
+    <string name="search_mode_map">Show on map</string>
+    <string name="filters">Filters</string>
+    <string name="filters_count">Filters (%1$d)</string>
+    <plurals name="search_result_count">
+        <item quantity="one">%d match</item>
+        <item quantity="other">%d matches</item>
+    </plurals>
+    <string name="filter_distance_all">Anywhere</string>
+    <string name="filter_distance_5">≤ 5 km</string>
+    <string name="filter_distance_10">≤ 10 km</string>
+    <string name="filter_distance_25">≤ 25 km</string>
+    <string name="filter_date_all">Any date</string>
+    <string name="filter_date_today">Today</string>
+    <string name="filter_date_weekend">This weekend</string>
+    <string name="filter_date_week">Next 7 days</string>
+    <string name="filter_format_all">All formats</string>
+    <string name="filter_level_all">All levels</string>
+    <string name="filter_places">Spots left</string>
+    <string name="search_empty_title">No match near you</string>
+    <string name="search_empty_message">Widen the distance, change city or remove filters.</string>
+    <string name="map_you">You</string>
+    <string name="weather_loading">Weather: loading…</string>
+    <string name="weather_forecast">Forecast: %1$d °C · %2$s</string>
+    <string name="weather_too_early">Forecast available 15 days before the match</string>
+    <string name="weather_unavailable">Weather unavailable for now</string>
+    <string name="weather_clear">Clear sky</string>
+    <string name="weather_partly_cloudy">Partly cloudy</string>
+    <string name="weather_cloudy">Cloudy</string>
+    <string name="weather_fog">Fog</string>
+    <string name="weather_drizzle">Drizzle</string>
+    <string name="weather_rain">Rain</string>
+    <string name="weather_snow">Snow</string>
+    <string name="weather_storm">Thunderstorm</string>
+
+    <!-- Notifications, reminders, network (lot 6) -->
+    <string name="menu_notifications_unread">Notifications (unread)</string>
+    <string name="notif_channel_matches">Match activity</string>
+    <string name="notif_channel_matches_desc">New players, updated or cancelled matches, free spots</string>
+    <string name="notif_channel_reminders">Match reminders</string>
+    <string name="notif_channel_reminders_desc">A reminder before each of your matches</string>
+    <string name="notif_join_confirmed_title">You’re in!</string>
+    <string name="notif_join_confirmed_body">You’re playing “%1$s”. See you on the pitch!</string>
+    <string name="notif_new_participant_title">New player</string>
+    <string name="notif_new_participant_body">%1$s joined “%2$s”.</string>
+    <string name="notif_match_cancelled_title">Match cancelled</string>
+    <string name="notif_match_cancelled_body">%1$s cancelled “%2$s”.</string>
+    <string name="notif_match_updated_title">Match updated</string>
+    <string name="notif_match_updated_body">%1$s updated “%2$s”. Check the date and place.</string>
+    <string name="notif_spot_available_title">A spot is free</string>
+    <string name="notif_spot_available_body">Hurry! A spot just opened up in “%1$s”.</string>
+    <string name="reminder_title">Your match starts soon</string>
+    <string name="reminder_body">“%1$s” starts at %2$s.</string>
+    <string name="notifications_mark_all_read">Mark all read</string>
+    <string name="notifications_empty_title">No notifications</string>
+    <string name="notifications_empty_message">You’ll be notified when a player joins your match, when a match changes or when a spot opens up.</string>
+    <string name="notifications_permission_denied">Notifications denied: find them under the bell at the top.</string>
+    <string name="action_follow">Full · Notify me</string>
+    <string name="action_unfollow">Stop notifying me</string>
+    <string name="follow_on">You’ll be notified if a spot opens up.</string>
+    <string name="follow_off">You won’t be notified for this match anymore.</string>
+    <string name="error_follow">Couldn’t update the alert. Try again.</string>
+
+    <!-- Settings, favorites, recents (lot 7) -->
+    <string name="settings_section_appearance">Appearance</string>
+    <string name="settings_section_search">Search</string>
+    <string name="settings_section_notifications">Notifications</string>
+    <string name="settings_language">Language</string>
+    <string name="settings_theme">Theme</string>
+    <string name="settings_default_city">Default city</string>
+    <string name="settings_no_city">None (profile city)</string>
+    <string name="settings_reminder">Reminder before a match</string>
+    <string name="settings_system_notifications">Android notifications</string>
+    <string name="settings_system_notifications_hint">Turn each type of notification on or off</string>
+    <string name="settings_follow_system">Same as the phone</string>
+    <string name="settings_saved">Setting saved</string>
+    <string name="settings_version">FootTogether · version %1$s</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="reminder_off">No reminder</string>
+    <string name="reminder_5min">5 min before</string>
+    <string name="reminder_15min">15 min before</string>
+    <string name="reminder_30min">30 min before</string>
+    <string name="reminder_1h">1 h before</string>
+    <string name="reminder_3h">3 h before</string>
+    <string name="reminder_1day">1 day before</string>
+    <string name="reminders_disabled">Reminders turned off</string>
+    <plurals name="reminders_rescheduled">
+        <item quantity="one">%d reminder rescheduled</item>
+        <item quantity="other">%d reminders rescheduled</item>
+    </plurals>
+    <string name="action_unfavorite">Remove from favorites</string>
+    <string name="favorite_added">Added to favorites</string>
+    <string name="favorite_removed">Removed from favorites</string>
+    <string name="favorites_tab">Favorites</string>
+    <string name="recents_tab">Recently viewed</string>
+    <string name="favorites_offline_hint">Saved on this phone: available even offline.</string>
+    <string name="favorites_empty_title">No favorites</string>
+    <string name="favorites_empty_message">Tap the heart on a match to find it here.</string>
+    <string name="recents_empty_title">No match viewed yet</string>
+    <string name="recents_empty_message">Matches you open will show up here.</string>
+    <string name="recents_clear">Clear history</string>
+    <string name="recents_cleared">History cleared</string>
+
+    <!-- Mini-game, ratings, badges, leaderboard (lot 9) -->
+    <string name="minigame_title">Mini-game: keepy-uppy</string>
+    <string name="minigame_short">Mini-game</string>
+    <string name="minigame_seconds">seconds</string>
+    <string name="minigame_juggles">juggles</string>
+    <string name="minigame_ball">Ball (tap it to juggle)</string>
+    <string name="minigame_instructions">Shake the phone to juggle: one shake = one juggle. You have 30 seconds!</string>
+    <string name="minigame_no_sensor">No accelerometer on this device: tap the ball to juggle.</string>
+    <string name="minigame_running">Shake! (or tap the ball)</string>
+    <string name="minigame_running_no_sensor">Tap the ball!</string>
+    <string name="minigame_start">Start</string>
+    <string name="minigame_restart">Play again</string>
+    <string name="minigame_record">Best: %1$d</string>
+    <plurals name="minigame_new_record">
+        <item quantity="one">New record: %d juggle!</item>
+        <item quantity="other">New record: %d juggles!</item>
+    </plurals>
+    <plurals name="minigame_final_score">
+        <item quantity="one">Done: %d juggle</item>
+        <item quantity="other">Done: %d juggles</item>
+    </plurals>
+    <string name="minigame_history">Last games: %1$s</string>
+    <string name="minigame_no_history">No games yet</string>
+    <string name="action_rate_players">Rate the players</string>
+    <string name="rate_title">Rate the players</string>
+    <string name="rate_progress">Player %1$d of %2$d</string>
+    <string name="rate_fair_play">Fair play</string>
+    <string name="rate_punctuality">Punctuality</string>
+    <string name="rate_team_spirit">Team spirit</string>
+    <string name="rate_missing">Give at least one star to each criterion.</string>
+    <string name="rate_skip">Skip</string>
+    <string name="rate_send">Send</string>
+    <string name="rate_thanks">Thanks for your ratings!</string>
+    <string name="rate_none_sent">No rating sent</string>
+    <string name="error_rate">Couldn’t send the rating. Try again.</string>
+    <string name="badges_title">Badges</string>
+    <string name="badge_regular">Regular player</string>
+    <string name="badge_organizer">Active organizer</string>
+    <string name="badge_fair_play">Fair play</string>
+    <string name="badge_earned">Earned ✓</string>
+    <string name="badge_regular_progress">%1$d / %2$d matches played</string>
+    <string name="badge_organizer_progress">%1$d / %2$d matches organized</string>
+    <string name="badge_fair_play_rule">At least %1$d ratings and a 4/5 fair-play average</string>
+    <string name="ratings_none">No ratings yet: play a match to get rated.</string>
+    <plurals name="ratings_summary">
+        <item quantity="one">Fair play %1$s · Punctuality %2$s · Team spirit %3$s (%4$d rating)</item>
+        <item quantity="other">Fair play %1$s · Punctuality %2$s · Team spirit %3$s (%4$d ratings)</item>
+    </plurals>
+    <string name="leaderboard_title">Leaderboard</string>
+    <string name="leaderboard_players">Players</string>
+    <string name="leaderboard_organizers">Organizers</string>
+    <string name="leaderboard_empty">No ranked players yet.</string>
+</resources>

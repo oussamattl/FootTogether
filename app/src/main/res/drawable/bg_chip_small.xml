@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Petite étiquette (niveau, Complet, Annulé...). La couleur de fond est changée dans le code (backgroundTint). -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@android:color/white" />
+    <corners android:radius="@dimen/badge_corner" />
+</shape>

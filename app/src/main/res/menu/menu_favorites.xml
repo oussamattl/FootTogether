@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Menu de l'écran Favoris : « Effacer l'historique » (visible seulement dans l'onglet Vus récemment). -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_clear_recents"
+        android:title="@string/recents_clear"
+        android:visible="false"
+        app:showAsAction="never" />
+</menu>

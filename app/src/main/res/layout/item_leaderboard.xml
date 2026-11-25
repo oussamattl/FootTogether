@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Une ligne du classement : rang, avatar (initiale ou photo), pseudo + ville, nombre de matchs. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:minHeight="64dp"
+    android:orientation="horizontal"
+    android:paddingHorizontal="20dp"
+    android:paddingVertical="@dimen/space_m">
+
+    <TextView
+        android:id="@+id/rank_position"
+        android:layout_width="36dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/barlow_condensed"
+        android:textColor="@color/text_muted"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        tools:text="1" />
+
+    <FrameLayout
+        android:layout_width="40dp"
+        android:layout_height="40dp">
+
+        <TextView
+            android:id="@+id/rank_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_icon_circle"
+            android:gravity="center"
+            android:importantForAccessibility="no"
+            android:textColor="@color/on_green_soft"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="O" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/rank_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:importantForAccessibility="no"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.FootTogether.Circle" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_m"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/rank_pseudo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_primary"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            tools:text="Oussama" />
+
+        <TextView
+            android:id="@+id/rank_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.FootTogether.Caption"
+            tools:text="Valenciennes" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/rank_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/barlow_condensed"
+        android:textColor="@color/green_primary"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        tools:text="12" />
+</LinearLayout>

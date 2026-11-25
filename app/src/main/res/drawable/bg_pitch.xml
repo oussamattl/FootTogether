@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- En-tête de l'écran Détail : un terrain vu du dessus (bandes de pelouse, ligne médiane, rond central). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="200dp"
+    android:viewportWidth="360"
+    android:viewportHeight="200">
+    <!-- Pelouse : fond vert + 4 bandes un peu plus claires -->
+    <path
+        android:fillColor="#0F7A3D"
+        android:pathData="M0,0h360v200h-360z" />
+    <path
+        android:fillColor="#12873F"
+        android:pathData="M45,0h45v200h-45zM135,0h45v200h-45zM225,0h45v200h-45zM315,0h45v200h-45z" />
+    <!-- Ligne médiane -->
+    <path
+        android:fillAlpha="0.5"
+        android:fillColor="#FFFFFF"
+        android:pathData="M178.5,0h3v200h-3z" />
+    <!-- Rond central -->
+    <path
+        android:pathData="M135,100a45,45 0,1 0,90 0a45,45 0,1 0,-90 0"
+        android:strokeWidth="3"
+        android:strokeAlpha="0.5"
+        android:strokeColor="#FFFFFF" />
+</vector>

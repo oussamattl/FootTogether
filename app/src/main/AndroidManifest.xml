@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Accès à Internet (Firebase, Open-Meteo, tuiles OpenStreetMap) -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Savoir si le téléphone est connecté (bandeau "Serveur momentanément inaccessible") -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- Localisation (lot 5) : matchs proches, distance, centrage de la carte.
+         Demandée pendant l'utilisation ; l'utilisateur peut choisir « approximative ». -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- Notifications (lot 6) : afficher des notifications (à demander à l'utilisateur dès Android 13) -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- Être prévenu quand le téléphone a redémarré, pour reprogrammer les rappels -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- Photo de profil : l'app Appareil photo est utilisée si elle existe, mais elle n'est pas
+         obligatoire pour installer FootTogether (on peut choisir une photo de la galerie). -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <!-- android:name : notre classe Application (FootTogetherApp), créée avant tout écran -->
+    <application
+        android:name=".FootTogetherApp"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:localeConfig="@xml/locales_config"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.FootTogether"
+        tools:targetApi="33">
+
+        <!-- Écran de démarrage : c'est lui que lance l'icône de l'app (intent-filter LAUNCHER) -->
+        <activity
+            android:name=".ui.splash.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.FootTogether.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Connexion / inscription. adjustResize : l'écran se redimensionne quand le clavier s'ouvre -->
+        <activity
+            android:name=".ui.auth.AuthActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Écran principal (barre du bas + fragments) -->
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Détail d'un match (infos, participants, Rejoindre / Quitter).
+             parentActivityName : le retour ramène à l'écran principal. -->
+        <activity
+            android:name=".ui.detail.MatchDetailActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.main.MainActivity" />
+
+        <!-- Modifier un match (organisateur). adjustResize : le formulaire reste visible avec le clavier -->
+        <activity
+            android:name=".ui.create.EditMatchActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Historique des notifications (cloche de la barre du haut) -->
+        <activity
+            android:name=".ui.notifications.NotificationsActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.main.MainActivity" />
+
+        <!-- Paramètres et Favoris (lot 7), ouverts depuis le menu ⋮ -->
+        <activity
+            android:name=".ui.settings.SettingsActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.main.MainActivity" />
+        <activity
+            android:name=".ui.favorites.FavoritesActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.main.MainActivity" />
+
+        <!-- Lot 9 : mini-jeu (accéléromètre) et classement, ouverts depuis le Profil -->
+        <activity
+            android:name=".ui.minigame.MiniGameActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.main.MainActivity" />
+        <activity
+            android:name=".ui.leaderboard.LeaderboardActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.main.MainActivity" />
+
+        <!-- Langue choisie dans les Paramètres : sur Android 12 et moins, AppCompat la garde
+             lui-même grâce à ce service (sur Android 13+, c'est le système qui la garde). -->
+        <service
+            android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
+            android:enabled="false"
+            android:exported="false">
+            <meta-data
+                android:name="autoStoreLocales"
+                android:value="true" />
+        </service>
+
+        <!-- Service qui écoute les notifications Firestore et les affiche (démarré par MainActivity).
+             exported="false" : aucune autre application ne peut le démarrer. -->
+        <service
+            android:name=".service.NotificationSyncService"
+            android:exported="false" />
+
+        <!-- Rappel avant un match : reçoit l'alarme programmée par ReminderScheduler -->
+        <receiver
+            android:name=".receiver.MatchReminderReceiver"
+            android:exported="false" />
+
+        <!-- Redémarrage du téléphone : exported="true" car le message vient du système Android
+             (BOOT_COMPLETED est réservé au système, une autre app ne peut pas l'envoyer) -->
+        <receiver
+            android:name=".receiver.BootReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

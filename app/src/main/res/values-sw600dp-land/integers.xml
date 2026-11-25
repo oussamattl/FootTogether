@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tablette en paysage : 3 colonnes de matchs -->
+    <integer name="match_columns">3</integer>
+</resources>

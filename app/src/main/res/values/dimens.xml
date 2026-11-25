@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dimensions communes. On utilise dp pour les tailles et sp pour le texte
+     (le sp suit la taille de police choisie par l'utilisateur dans les réglages du téléphone). -->
+<resources>
+    <!-- Espacements -->
+    <dimen name="space_xxs">2dp</dimen>
+    <dimen name="space_xs">4dp</dimen>
+    <dimen name="space_s">8dp</dimen>
+    <dimen name="space_m">12dp</dimen>
+    <dimen name="space_l">16dp</dimen>
+    <dimen name="space_xl">24dp</dimen>
+    <dimen name="space_xxl">32dp</dimen>
+    <dimen name="screen_padding">16dp</dimen>
+    <dimen name="auth_header_padding_top">40dp</dimen>
+    <!-- Marges sur les côtés des formulaires (agrandies sur tablette : values-sw600dp/dimens.xml) -->
+    <dimen name="form_side_padding">20dp</dimen>
+    <dimen name="auth_side_padding">28dp</dimen>
+
+    <!-- Formes -->
+    <dimen name="card_corner">18dp</dimen>
+    <dimen name="badge_corner">6dp</dimen>
+    <dimen name="touch_target">48dp</dimen>
+    <dimen name="logo_size">112dp</dimen>
+
+    <!-- Tailles de texte -->
+    <dimen name="text_display">48sp</dimen>
+    <dimen name="text_headline">28sp</dimen>
+    <dimen name="text_title">22sp</dimen>
+    <dimen name="text_body">15sp</dimen>
+    <dimen name="text_caption">13sp</dimen>
+    <dimen name="text_badge">14sp</dimen>
+</resources>

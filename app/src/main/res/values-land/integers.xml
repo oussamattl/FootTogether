@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Téléphone en paysage : 2 colonnes de matchs (l'écran est large mais peu haut) -->
+    <integer name="match_columns">2</integer>
+</resources>

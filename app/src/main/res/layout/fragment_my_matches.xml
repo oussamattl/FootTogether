@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Mes matchs : onglets « Je participe » / « J'organise » puis la liste correspondante. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/my_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@drawable/bg_segmented"
+        android:padding="4dp"
+        app:tabGravity="fill"
+        app:tabIndicator="@drawable/bg_segmented_indicator"
+        app:tabIndicatorColor="@color/surface"
+        app:tabIndicatorFullWidth="true"
+        app:tabIndicatorGravity="stretch"
+        app:tabMode="fixed"
+        app:tabRippleColor="@null"
+        app:tabSelectedTextColor="@color/text_primary"
+        app:tabTextAppearance="@style/TextAppearance.FootTogether.Tab"
+        app:tabTextColor="@color/text_muted" />
+
+    <!-- Astuce affichée seulement dans « Je participe » -->
+    <TextView
+        android:id="@+id/my_swipe_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="@dimen/space_s"
+        android:text="@string/my_matches_swipe_hint"
+        android:textColor="@color/text_muted"
+        android:textSize="12sp" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/my_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingHorizontal="@dimen/space_m"
+            android:paddingTop="@dimen/space_xs"
+            android:paddingBottom="@dimen/space_xl"
+            tools:listitem="@layout/item_match" />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/my_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            app:indicatorColor="@color/green_primary" />
+
+        <LinearLayout
+            android:id="@+id/my_empty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="@dimen/space_xxl"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <ImageView
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_event"
+                app:tint="@color/green_primary" />
+
+            <TextView
+                android:id="@+id/my_empty_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_m"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.FootTogether.Title"
+                android:textColor="@color/text_primary"
+                tools:text="Aucun match pour l'instant" />
+
+            <TextView
+                android:id="@+id/my_empty_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_xs"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.FootTogether.Body"
+                android:textColor="@color/text_muted"
+                tools:text="Rejoins un match depuis l'Accueil ou la Recherche." />
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

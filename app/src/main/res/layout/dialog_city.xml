@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Contenu de la boîte de dialogue « Ville par défaut ». -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/space_xl"
+    android:paddingTop="@dimen/space_s">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/dialog_city_layout"
+        style="@style/Widget.FootTogether.TextField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/field_city">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/dialog_city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionDone"
+            android:inputType="textCapWords"
+            android:maxLength="40"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+</FrameLayout>

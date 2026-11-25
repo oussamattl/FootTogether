@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Les 5 entrées de la barre de navigation du bas.
+     L'entrée du milieu est vide : le bouton rond vert "+" est posé par-dessus (voir activity_main.xml). -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_home"
+        android:title="@string/nav_home" />
+    <item
+        android:id="@+id/nav_search"
+        android:icon="@drawable/ic_search"
+        android:title="@string/nav_search" />
+    <item
+        android:id="@+id/nav_create"
+        android:icon="@drawable/ic_blank"
+        android:title="" />
+    <item
+        android:id="@+id/nav_my_matches"
+        android:icon="@drawable/ic_event"
+        android:title="@string/nav_my_matches" />
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_person"
+        android:title="@string/nav_profile" />
+</menu>

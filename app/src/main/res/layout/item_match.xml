@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Une carte de match dans la liste (RecyclerView), d'après la maquette :
+     badge format, étiquette niveau/état, distance, titre, date, lieu, barre des places. -->
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.FootTogether.MatchCard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/space_s"
+    android:clickable="true"
+    android:focusable="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/space_l">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/match_format"
+                style="@style/Widget.FootTogether.FormatBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="5 VS 5" />
+
+            <TextView
+                android:id="@+id/match_chip"
+                style="@style/Widget.FootTogether.SmallChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                tools:text="Intermédiaire" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <!-- Distance : remplie au lot 5 (localisation) -->
+            <TextView
+                android:id="@+id/match_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_muted"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                tools:text="1,2 km"
+                tools:visibility="visible" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/match_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_m"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/text_primary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="Foot à 5 du samedi" />
+
+        <TextView
+            android:id="@+id/match_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_s"
+            android:drawablePadding="@dimen/space_s"
+            android:gravity="center_vertical"
+            android:textColor="@color/text_muted"
+            android:textSize="14sp"
+            app:drawableStartCompat="@drawable/ic_event"
+            app:drawableTint="@color/text_muted"
+            tools:text="Samedi 28 nov. · 15:00" />
+
+        <TextView
+            android:id="@+id/match_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:drawablePadding="@dimen/space_s"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:textColor="@color/text_muted"
+            android:textSize="14sp"
+            app:drawableStartCompat="@drawable/ic_place"
+            app:drawableTint="@color/text_muted"
+            tools:text="City stade, Valenciennes" />
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/match_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_m"
+            app:indicatorColor="@color/green_primary"
+            app:trackColor="@color/segmented_bg"
+            app:trackCornerRadius="4dp"
+            app:trackStopIndicatorSize="0dp"
+            app:trackThickness="8dp"
+            tools:max="10"
+            tools:progress="2" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/match_places_left"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/on_green_soft"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                tools:text="8 places restantes" />
+
+            <TextView
+                android:id="@+id/match_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_muted"
+                android:textSize="13sp"
+                tools:text="2/10 · par Oussama" />
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

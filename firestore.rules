@@ -1,0 +1,271 @@
+// Règles de sécurité Cloud Firestore de FootTogether.
+// À copier-coller dans la console Firebase : Firestore Database > onglet "Règles" > Publier.
+//
+// Les règles s'exécutent SUR LE SERVEUR : même une app modifiée ne peut pas les contourner.
+// Contenu : profils, matchs, participants (lots 1 à 4) et notifications (lot 6).
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Vrai si la requête vient d'un utilisateur connecté (Firebase Authentication)
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    // Vrai si l'utilisateur connecté est le propriétaire du document {uid}
+    function isOwner(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    // Lot 9 : une évaluation valide. L'évaluateur est l'utilisateur connecté, il ne s'évalue pas
+    // lui-même, les deux joueurs participent au match, le match a commencé et n'est pas annulé,
+    // et les trois notes sont des entiers de 1 à 5.
+    function validRating(matchId) {
+      let data = request.resource.data;
+      let matchDoc = get(/databases/$(database)/documents/matches/$(matchId)).data;
+      return signedIn()
+        && data.keys().hasOnly(['matchId', 'raterId', 'ratedId', 'fairPlay', 'punctuality',
+                                'teamSpirit', 'createdAt'])
+        && data.matchId == matchId
+        && data.raterId == request.auth.uid
+        && data.ratedId != request.auth.uid
+        && request.auth.uid in matchDoc.participantIds
+        && data.ratedId in matchDoc.participantIds
+        && matchDoc.status != 'CANCELLED'
+        && matchDoc.dateTime < request.time
+        && data.fairPlay is int && data.fairPlay >= 1 && data.fairPlay <= 5
+        && data.punctuality is int && data.punctuality >= 1 && data.punctuality <= 5
+        && data.teamSpirit is int && data.teamSpirit >= 1 && data.teamSpirit <= 5;
+    }
+
+    // ===== Profils des joueurs : users/{uid} =====
+    match /users/{uid} {
+      // Tout joueur connecté peut voir les profils (pseudo des participants, organisateur...)
+      allow read: if signedIn();
+
+      // Création : seulement son propre profil, avec un pseudo valide et des compteurs à zéro
+      allow create: if isOwner(uid)
+        && request.resource.data.pseudo is string
+        && request.resource.data.pseudo.size() >= 3
+        && request.resource.data.pseudo.size() <= 20
+        && request.resource.data.matchesPlayed == 0
+        && request.resource.data.matchesOrganized == 0;
+
+      // Modification : seulement par le propriétaire, avec un pseudo toujours valide
+      // et une photo de taille raisonnable (texte Base64 < 300 000 caractères ≈ 220 Ko)
+      allow update: if isOwner(uid)
+        && request.resource.data.pseudo is string
+        && request.resource.data.pseudo.size() >= 3
+        && request.resource.data.pseudo.size() <= 20
+        && (request.resource.data.get('photoBase64', null) == null
+            || (request.resource.data.photoBase64 is string
+                && request.resource.data.photoBase64.size() < 300000));
+
+      // Pas de suppression de profil depuis l'app
+      allow delete: if false;
+
+      // ===== Évaluations reçues : users/{uid}/ratings/{matchId}_{raterId} (lot 9) =====
+      // Lisibles par tous (moyennes, badges). Une seule par match et par évaluateur (id imposé),
+      // jamais modifiée ni supprimée.
+      match /ratings/{ratingId} {
+        allow read: if signedIn();
+        allow create: if validRating(request.resource.data.matchId)
+          && request.resource.data.ratedId == uid
+          && ratingId == request.resource.data.matchId + '_' + request.auth.uid;
+        allow update, delete: if false;
+      }
+
+      // ===== Notifications : users/{uid}/notifications/{notifId} (lot 6) =====
+      match /notifications/{notifId} {
+        // Seul le destinataire lit, marque comme lue/affichée, ou supprime ses notifications
+        allow read, delete: if isOwner(uid);
+        allow update: if isOwner(uid)
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['read', 'delivered']);
+
+        // N'importe quel joueur connecté peut écrire une notification à un autre
+        // (c'est l'auteur de l'action qui prévient, pas de serveur payant),
+        // mais il signe avec SON uid : impossible de se faire passer pour quelqu'un d'autre.
+        allow create: if signedIn()
+          && request.resource.data.senderId == request.auth.uid
+          && request.resource.data.type in ['JOIN_CONFIRMED', 'NEW_PARTICIPANT',
+               'MATCH_CANCELLED', 'MATCH_UPDATED', 'SPOT_AVAILABLE']
+          && request.resource.data.matchId is string
+          && request.resource.data.read == false
+          && request.resource.data.delivered == false;
+      }
+    }
+
+    // ===== Matchs : matches/{matchId} =====
+    match /matches/{matchId} {
+      allow read: if signedIn();
+
+      // Création : l'organisateur est l'utilisateur connecté et il est le seul participant (1/N).
+      // On revérifie ici les données du formulaire : le serveur ne fait pas confiance au téléphone.
+      allow create: if signedIn()
+        && request.resource.data.organizerId == request.auth.uid
+        && request.resource.data.participantCount == 1
+        && request.resource.data.participantIds == [request.auth.uid]
+        && request.resource.data.followerIds == []
+        && request.resource.data.status == 'OPEN'
+        && request.resource.data.title is string
+        && request.resource.data.title.size() >= 3
+        && request.resource.data.title.size() <= 60
+        && request.resource.data.dateTime is timestamp
+        && request.resource.data.dateTime > request.time
+        && request.resource.data.maxPlayers is int
+        && request.resource.data.maxPlayers >= 2
+        && request.resource.data.maxPlayers <= 22
+        && request.resource.data.format in ['FIVE', 'SEVEN', 'ELEVEN']
+        && request.resource.data.level in ['BEGINNER', 'INTERMEDIATE', 'ADVANCED'];
+
+      // --- Rejoindre / quitter (lot 3) ---
+      // Un joueur ne peut toucher QUE aux champs de participation, jamais au titre, à la date...
+      function onlyParticipationChanged() {
+        return request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(['participantCount', 'participantIds', 'status', 'followerIds', 'updatedAt']);
+      }
+
+      // Compteur = taille de la liste, jamais plus que maxPlayers,
+      // et statut FULL exactement quand le match est plein (OPEN sinon)
+      function participationConsistent() {
+        let after = request.resource.data;
+        let max = resource.data.maxPlayers;
+        return after.participantCount == after.participantIds.size()
+          && after.participantCount <= max
+          && ((after.participantCount < max && after.status == 'OPEN')
+              || (after.participantCount == max && after.status == 'FULL'));
+      }
+
+      // Rejoindre : match ouvert et pas commencé ; on AJOUTE seulement SON uid.
+      // S'il suivait le match (followerIds), il peut seulement s'en retirer lui-même.
+      function isJoining() {
+        let uid = request.auth.uid;
+        let before = resource.data.participantIds;
+        let after = request.resource.data.participantIds;
+        return resource.data.status == 'OPEN'
+          && resource.data.dateTime > request.time
+          && !(uid in before)
+          && uid in after
+          && after.hasAll(before)
+          && after.size() == before.size() + 1
+          && request.resource.data.get('followerIds', [])
+               == resource.data.get('followerIds', []).removeAll([uid]);
+      }
+
+      // Quitter : match pas annulé ni commencé, pas l'organisateur ; on RETIRE seulement SON uid
+      function isLeaving() {
+        let uid = request.auth.uid;
+        let before = resource.data.participantIds;
+        let after = request.resource.data.participantIds;
+        return resource.data.status in ['OPEN', 'FULL']
+          && resource.data.dateTime > request.time
+          && uid != resource.data.organizerId
+          && uid in before
+          && !(uid in after)
+          && before.hasAll(after)
+          && after.size() == before.size() - 1
+          && request.resource.data.get('followerIds', []) == resource.data.get('followerIds', []);
+      }
+
+      // --- Suivre un match complet (lot 6) : on ajoute ou retire SEULEMENT son uid de followerIds ---
+      function isFollowChange() {
+        let uid = request.auth.uid;
+        let before = resource.data.get('followerIds', []);
+        let after = request.resource.data.followerIds;
+        let follow = resource.data.status == 'FULL'
+          && !(uid in resource.data.participantIds)
+          && !(uid in before)
+          && uid in after
+          && after.hasAll(before)
+          && after.size() == before.size() + 1;
+        let unfollow = uid in before
+          && !(uid in after)
+          && before.hasAll(after)
+          && after.size() == before.size() - 1;
+        return signedIn()
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['followerIds'])
+          && (follow || unfollow);
+      }
+
+      // --- Organisateur : modifier ou annuler (lot 4) ---
+      function isOrganizer() {
+        return signedIn() && resource.data.organizerId == request.auth.uid;
+      }
+
+      // Infos du match modifiables par l'organisateur, tant que le match n'a pas commencé
+      // et n'est pas annulé. Il ne touche JAMAIS à la liste des participants.
+      function isOrganizerEdit() {
+        let after = request.resource.data;
+        return isOrganizer()
+          && request.resource.data.diff(resource.data).affectedKeys()
+               .hasOnly(['title', 'description', 'dateTime', 'address', 'city', 'lat', 'lng',
+                         'format', 'maxPlayers', 'level', 'status', 'updatedAt'])
+          && resource.data.status != 'CANCELLED'
+          && resource.data.dateTime > request.time
+          && after.title is string
+          && after.title.size() >= 3
+          && after.title.size() <= 60
+          && after.dateTime is timestamp
+          && after.dateTime > request.time
+          && after.maxPlayers is int
+          && after.maxPlayers >= 2
+          && after.maxPlayers <= 22
+          && after.maxPlayers >= after.participantCount
+          && after.format in ['FIVE', 'SEVEN', 'ELEVEN']
+          && after.level in ['BEGINNER', 'INTERMEDIATE', 'ADVANCED']
+          && (after.status == 'CANCELLED'
+              || (after.participantCount < after.maxPlayers && after.status == 'OPEN')
+              || (after.participantCount == after.maxPlayers && after.status == 'FULL'));
+      }
+
+      // L'organisateur a changé de pseudo : on recopie le nouveau dans ses matchs
+      function isOrganizerRename() {
+        return isOrganizer()
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['organizerPseudo'])
+          && request.resource.data.organizerPseudo is string
+          && request.resource.data.organizerPseudo.size() >= 3
+          && request.resource.data.organizerPseudo.size() <= 20;
+      }
+
+      allow update: if (signedIn()
+          && onlyParticipationChanged()
+          && participationConsistent()
+          && (isJoining() || isLeaving()))
+        || isFollowChange()
+        || isOrganizerEdit()
+        || isOrganizerRename();
+
+      // Pas de suppression : on annule un match (statut CANCELLED)
+      allow delete: if false;
+
+      // ===== Évaluations du match : matches/{matchId}/ratings/{raterId}_{ratedId} (lot 9) =====
+      match /ratings/{ratingId} {
+        allow read: if signedIn();
+        allow create: if validRating(matchId)
+          && ratingId == request.auth.uid + '_' + request.resource.data.ratedId;
+        allow update, delete: if false;
+      }
+
+      // ===== Participants : matches/{matchId}/participants/{uid} =====
+      match /participants/{uid} {
+        allow read: if signedIn();
+
+        // Un joueur ne crée que SA fiche, et seulement s'il figure bien dans participantIds
+        // du match APRÈS l'écriture (getAfter voit le résultat de tout le lot d'écritures).
+        allow create: if isOwner(uid)
+          && uid in getAfter(/databases/$(database)/documents/matches/$(matchId)).data.participantIds;
+
+        // Mise à jour de SA fiche (nouveau pseudo, poste, niveau ou photo) : seulement ces champs
+        allow update: if isOwner(uid)
+          && request.resource.data.diff(resource.data).affectedKeys()
+               .hasOnly(['pseudo', 'position', 'level', 'photoThumbBase64']);
+
+        // Suppression (quitter) : seulement SA fiche, et seulement si son uid n'est plus
+        // dans participantIds après l'écriture (même transaction que la mise à jour du match)
+        allow delete: if isOwner(uid)
+          && !(uid in getAfter(/databases/$(database)/documents/matches/$(matchId)).data.participantIds);
+      }
+    }
+  }
+}

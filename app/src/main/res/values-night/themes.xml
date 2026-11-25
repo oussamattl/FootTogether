@@ -1,0 +1,7 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Mode sombre : on garde le même thème (les couleurs changent via values-night/colors.xml),
+         on passe seulement les icônes de la barre d'état en clair. -->
+    <style name="Theme.FootTogether" parent="Base.Theme.FootTogether">
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>
